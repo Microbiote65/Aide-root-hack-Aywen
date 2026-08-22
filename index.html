@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8" />
+    <title>Root Hack Aywen</title>
+    <link rel="stylesheet" href="style/root.css" type="text/css" />
+    <link rel="icon" href="images/Root.png" type="image/png">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="script/script.js" defer></script>
+</head>
+
+<body>
+	<!-- ICÔNES DU BUREAU -->
+	<div class="bureau-icones">
+		<div id="bureau-terminal" class="icone-bureau">
+			<img src="images/terminal.png" alt="Terminal">
+			<span>Terminal</span>
+		</div>
+		<div id="bureau-internet" class="icone-bureau">
+			<img src="images/internet_explorer.png" alt="Internet">
+			<span>Internet Explorer</span>
+		</div>
+		<div id="bureau-musique" class="icone-bureau">
+			<span class="emoji-bureau">🎵</span>
+			<span>Lecteur Audio</span>
+		</div>
+	</div>
+
+	<!-- FENÊTRE DISCLAIMER -->
+	<div id="fenetre_disclaimer" class="superposition_avertissement">
+		<div class="boite_avertissement">
+			<div class="haut_centrale">
+				<p>AVERTISSEMENT / DISCLAIMER</p>
+			</div>
+			<div class="contenu_avertissement">
+				<h2>⚠️ ATTENTION - AVERTISSEMENT ⚠️</h2>
+				<p>Ce jeu est une <strong>simulation purement fictive</strong>. Tous les éléments, adresses IP, identifiants, sites web et actions de piratage sont totalement inventés à des fins ludiques (aucune commande ne marche dans la réalité).</p>
+				<p><strong>Aucune action n'est requise en dehors de ce jeu.</strong> Aucune information n'est à aller chercher en dehors de ce jeu pour le réussir. Ne tentez pas d'attaquer de vrais systèmes d'information.</p>
+				<button id="btn-compris" class="bouton_avertissement">J'AI COMPRIS ET JE SOUHAITE JOUER</button>
+			</div>
+		</div>
+	</div>
+
+	<!-- FENÊTRE INTERNET EXPLORER -->
+	<div id="internet" class="boite_centrale cachee">
+		<!-- Barre du haut (Zone d'agrippement) -->
+		<div class="haut_centrale barre-deplacement">
+			<p>Internet Explorer</p>
+			<div class="commandes_fenetre">
+				<button id="btn-mininternet" class="bouton_fenetre bouton_reduire"></button>
+				<button class="bouton_fenetre bouton_agrandir"></button>
+				<button id="btn-closeinternet" class="bouton_fenetre bouton_fermer"></button>
+			</div>
+		</div>
+
+		<!-- PAGE D'ACCUEIL INTERNET -->
+		<div id="page_acceuille_internet">
+			<div class="barre_nav_ie">
+				<div class="boutons_ie">
+					<button class="bouton_ie btn-retour-ie" title="Précédent">&lt;</button>
+					<button class="bouton_ie" title="Suivant" disabled>&gt;</button>
+					<button class="bouton_ie" title="Rafraîchir">&#8635;</button>
+				</div>
+				<div class="adresse_ie">
+					<span>Adresse :</span>
+					<input type="text" value="https://www.internet.com" readonly>
+				</div>
+			</div>
+
+			<div class="contenu_ie">
+				<div class="entete_accueil_ie">
+					<img src="images/internet_explorer.png" alt="Internet Explorer" class="logo_ie">
+					<h1>Bienvenue sur le Web !</h1>
+				</div>
+
+				<p class="texte_bienvenue_ie">Sélectionnez un raccourci pour naviguer :</p>
+
+				<div class="raccourcis_ie">
+					<button id="btn-yt" class="raccourci">
+						<span class="icone">▶️</span>
+						<span class="titre">YouTube</span>
+					</button>
+					
+					<button id="btn-siteaywen" class="raccourci">
+						<span class="titre">Aywen.fr</span>
+					</button>
+					
+					<button id="btn-makerschat" class="raccourci">
+						<span class="icone">💬</span>
+						<span class="titre">MakersChat</span>
+					</button>
+					
+					<button id="btn-darknet" class="raccourci">
+						<span class="icone">🪙</span>
+						<span class="titre">AywenCoin.fr</span>
+					</button>
+				</div>
+			</div>
+		</div>
+
+		<!-- ACCUEIL YOUTUBE -->
+		<div id="youtube" class="cachee">
+			<div class="barre_nav_ie">
+				<div class="boutons_ie">
+					<button class="bouton_ie btn-retour-ie" title="Précédent">&lt;</button>
+					<button class="bouton_ie" title="Suivant" disabled>&gt;</button>
+					<button class="bouton_ie" title="Rafraîchir">&#8635;</button>
+				</div>
+				<div class="adresse_ie">
+					<span>Adresse :</span>
+					<input type="text" value="https://www.youtube.com" readonly>
+				</div>
+			</div>
+
+			<div class="contenu_ie disposition_yt">
+				<header class="entete_yt">
+					<img src="images/yt.webp" alt="YouTube" class="logo_yt">
+					<div class="barre_recherche_yt">
+						<input type="text" placeholder="Rechercher une vidéo...">
+						<button class="bouton_ie">Chercher</button>
+					</div>
+				</header>
+
+				<div class="corps_yt">
+					<aside class="barre_laterale_yt">
+						<h3>Abonnements</h3>
+						<ul class="liste_abonnements_yt">
+							<li>
+								<button id="btn-aywen" class="bouton_abonnement_yt">
+									<img src="https://yt3.googleusercontent.com/im1Ym-hvszy5dfx7ebMzvWlc10gUdEUpUgGMsc50r_eiY1tnDcdfvSTYZRnor0TaooEi8HaPvuc=s160-c-k-c0x00ffffff-no-rj" alt="Aywen" class="photo_profil_yt">
+									<span>Aywen</span>
+								</button>
+							</li>
+							<li>
+								<button id="btn-rootgaming" class="bouton_abonnement_yt">
+									<img src="images/root_gaming.png" alt="RootGaming" class="photo_profil_yt">
+									<span>RootGaming</span>
+								</button>
+							</li>
+							<li>
+								<button id="btn-misterv" class="bouton_abonnement_yt">
+									<img src="images/V.png" alt="MisterV" class="photo_profil_yt">
+									<span>MisterV</span>
+								</button>
+							</li>
+							<li>
+								<button id="btn-rootofficiel" class="bouton_abonnement_yt">
+									<img src="images/root_off.png" alt="Root_Officiel" class="photo_profil_yt">
+									<span>Root_Officiel</span>
+								</button>
+							</li>
+						</ul>
+					</aside>
+
+					<main class="principal_yt">
+						<h2>Vidéos recommandées</h2>
+						<div class="grille_yt">
+							<div class="video_yt">
+								<img src="images/system_32.png" alt="Miniature system32" class="miniature_yt">
+								<p class="titre_yt">TUTO : Comment supprimer le dossier System32 sans paniquer</p>
+								<span class="vues_yt">12 k vues • il y a 3 semaines</span>
+							</div>
+							<div class="video_yt">
+								<img src="images/patate.png" alt="Miniature patate" class="miniature_yt">
+								<p class="titre_yt">Comment accélérer sa connexion 56K avec une patate et de l'alu</p>
+								<span class="vues_yt">450 k vues • il y a 1 mois</span>
+							</div>
+							<div class="video_yt">
+								<img src="images/hack_wifi.png" alt="Miniature" class="miniature_yt">
+								<p class="titre_yt">Comment hacker le WiFi du voisin avec le Bloc-notes Windows</p>
+								<span class="vues_yt">89 k vues • il y a 8 mois</span>
+							</div>
+							<div class="video_yt">
+								<img src="images/grillepain.png" alt="Miniature" class="miniature_yt">
+								<p class="titre_yt">TEST : Installer Windows XP sur un grille-pain connectique USB</p>
+								<span class="vues_yt">2,1 M de vues • il y a 2 ans</span>
+							</div>
+						</div>
+					</main>
+				</div>
+			</div>
+		</div>
+
+		<!-- PAGE YOUTUBE AYWEN -->
+		<div id="yt_aywen" class="cachee">
+			<div class="barre_nav_ie">
+				<div class="boutons_ie">
+					<button class="bouton_ie btn-retour-ie" title="Précédent">&lt;</button>
+					<button class="bouton_ie" title="Suivant" disabled>&gt;</button>
+					<button class="bouton_ie" title="Rafraîchir">&#8635;</button>
+				</div>
+				<div class="adresse_ie">
+					<span>Adresse :</span>
+					<input type="text" value="https://www.youtube.com/@Aywen" readonly>
+				</div>
+			</div>
+
+			<div class="contenu_ie disposition_yt">
+				<header class="entete_yt">
+					<img src="images/yt.webp" alt="YouTube" class="logo_yt">
+					<div class="barre_recherche_yt">
+						<input type="text" placeholder="Rechercher une vidéo...">
+						<button class="bouton_ie">Chercher</button>
+					</div>
+				</header>
+
+				<div class="corps_yt">
+					<aside class="barre_laterale_yt">
+						<h3>Abonnements</h3>
+						<ul class="liste_abonnements_yt">
+							<li>
+								<button class="bouton_abonnement_yt">
+									<img src="https://yt3.googleusercontent.com/im1Ym-hvszy5dfx7ebMzvWlc10gUdEUpUgGMsc50r_eiY1tnDcdfvSTYZRnor0TaooEi8HaPvuc=s160-c-k-c0x00ffffff-no-rj" alt="Aywen" class="photo_profil_yt">
+									<span>Aywen</span>
+								</button>
+							</li>
+							<li>
+								<button id="btn-rootgaming-depuis-aywen" class="bouton_abonnement_yt">
+									<img src="images/root_gaming.png" alt="RootGaming" class="photo_profil_yt">
+									<span>RootGaming</span>
+								</button>
+							</li>
+							<li>
+								<button id="btn-misterv-depuis-aywen" class="bouton_abonnement_yt">
+									<img src="images/V.png" alt="MisterV" class="photo_profil_yt">
+									<span>MisterV</span>
+								</button>
+							</li>
+							<li>
+								<button id="btn-rootofficiel-depuis-aywen" class="bouton_abonnement_yt">
+									<img src="images/root_off.png" alt="Root_Officiel" class="photo_profil_yt">
+									<span>Root_Officiel</span>
+								</button>
+							</li>
+						</ul>
+					</aside>
+
+					<main class="principal_yt">
+						<section class="entete_chaine_yt">
+							<img src="https://yt3.googleusercontent.com/im1Ym-hvszy5dfx7ebMzvWlc10gUdEUpUgGMsc50r_eiY1tnDcdfvSTYZRnor0TaooEi8HaPvuc=s160-c-k-c0x00ffffff-no-rj" alt="Aywen" class="photo_chaine_yt">
+							<div class="infos_chaine_yt">
+								<div class="ligne_titre_chaine_yt">
+									<h1 class="nom_chaine_yt">Aywen</h1>
+									<span class="identifiant_chaine_yt">@Aywen</span>
+								</div>
+								<p class="compteur_abonnes_yt">321 k abonnés</p>
+								<p class="bio_chaine_yt">Je teste des expériences insolites grâce au code</p>
+								
+								<div class="ligne_actions_yt">
+									<button class="bouton_sabonner_yt" id="btn-subscribe">S'abonner</button>
+									<div class="conteneur_menu_yt">
+										<button class="bouton_points_yt" id="btn-dots" title="Plus d'options">&#8942;</button>
+										<div class="menu_deroulant_yt cachee" id="yt-dropdown">
+											<button class="element_menu_deroulant_yt" id="btn-copy-id">Copier l'ID de la chaîne</button>
+										</div>
+									</div>
+								</div>
+							</div>
+						</section>
+
+						<hr class="separateur_yt">
+
+						<h2>Vidéos de la chaîne</h2>
+						<div class="grille_yt">
+							<div class="video_yt">
+								<img src="images/poubelle.png" alt="Minia poubelle" class="miniature_yt">
+								<p class="titre_yt">J'ai codé une poubelle intelligente qui t'insulte si tu trie mal</p>
+								<span class="vues_yt">237 k vues • il y a 2 jours</span>
+							</div>
+							<div class="video_yt">
+								<img src="images/drone.png" alt="Miniature drone" class="miniature_yt">
+								<p class="titre_yt">J'ai codé un drone qui me poursuit dès que je fais une faute d'orthographe</p>
+								<span class="vues_yt">305 k vues • il y a 1 semaine</span>
+							</div>
+							<div class="video_yt">
+								<img src="images/jumeau.png" alt="Minia jumeau" class="miniature_yt">
+								<p class="titre_yt">Je me suis codé un jumeau virtuel en IA et il a essayé de pirater mon propre PC</p>
+								<span class="vues_yt">240 k vues • il y a 2 semaines</span>
+							</div>
+							<div class="video_yt">
+								<img src="images/avenir.png" alt="Minia avenir" class="miniature_yt">
+								<p class="titre_yt">J'ai créé un algorithme qui prédit mon avenir grâce à l'historique navigateur</p>
+								<span class="vues_yt">1,7 M vues • il y a 1 mois</span>
+							</div>
+						</div>
+					</main>
+				</div>
+			</div>
+		</div>
+
+		<!-- PAGE YOUTUBE ROOTGAMING -->
+		<div id="yt_rootgaming" class="cachee">
+			<div class="barre_nav_ie">
+				<div class="boutons_ie">
+					<button class="bouton_ie btn-retour-ie" title="Précédent">&lt;</button>
+					<button class="bouton_ie" title="Suivant" disabled>&gt;</button>
+					<button class="bouton_ie" title="Rafraîchir">&#8635;</button>
+				</div>
+				<div class="adresse_ie">
+					<span>Adresse :</span>
+					<input type="text" value="https://www.youtube.com/@RootGaming" readonly>
+				</div>
+			</div>
+
+			<div class="contenu_ie disposition_yt">
+				<header class="entete_yt">
+					<img src="images/yt.webp" alt="YouTube" class="logo_yt">
+					<div class="barre_recherche_yt">
+						<input type="text" placeholder="Rechercher une vidéo...">
+						<button class="bouton_ie">Chercher</button>
+					</div>
+				</header>
+
+				<div class="corps_yt">
+					<aside class="barre_laterale_yt">
+						<h3>Abonnements</h3>
+						<ul class="liste_abonnements_yt">
+							<li><button id="btn-aywen-depuis-rootgaming" class="bouton_abonnement_yt"><img src="https://yt3.googleusercontent.com/im1Ym-hvszy5dfx7ebMzvWlc10gUdEUpUgGMsc50r_eiY1tnDcdfvSTYZRnor0TaooEi8HaPvuc=s160-c-k-c0x00ffffff-no-rj" alt="Aywen" class="photo_profil_yt"><span>Aywen</span></button></li>
+							<li><button class="bouton_abonnement_yt"><img src="images/root_gaming.png" alt="RootGaming" class="photo_profil_yt"><span>RootGaming</span></button></li>
+							<li><button id="btn-misterv-depuis-rootgaming" class="bouton_abonnement_yt"><img src="images/V.png" alt="MisterV" class="photo_profil_yt"><span>MisterV</span></button></li>
+							<li><button id="btn-rootofficiel-depuis-rootgaming" class="bouton_abonnement_yt"><img src="images/root_off.png" alt="Root_Officiel" class="photo_profil_yt"><span>Root_Officiel</span></button></li>
+						</ul>
+					</aside>
+
+					<main class="principal_yt">
+						<section class="entete_chaine_yt">
+							<img src="images/root_gaming.png" alt="RootGaming" class="photo_chaine_yt">
+							<div class="infos_chaine_yt">
+								<div class="ligne_titre_chaine_yt">
+									<h1 class="nom_chaine_yt">RootGaming</h1>
+									<span class="identifiant_chaine_yt">@RootGaming</span>
+								</div>
+								<p class="compteur_abonnes_yt">120 k abonnés</p>
+								<p class="bio_chaine_yt">Let's play, glitchs et speedruns sur de vieux jeux PC !</p>
+								<button class="bouton_sabonner_yt">S'abonner</button>
+							</div>
+						</section>
+
+						<hr class="separateur_yt">
+
+						<h2>Vidéos de la chaîne</h2>
+						<div class="grille_yt">
+							<div class="video_yt">
+								<img src="images/system_32.png" alt="Gameplay" class="miniature_yt">
+								<p class="titre_yt">SPEEDRUN : Finir Windows XP sans utiliser la souris</p>
+								<span class="vues_yt">45 k vues • il y a 3 jours</span>
+							</div>
+							<div class="video_yt">
+								<img src="images/patate.png" alt="Gameplay" class="miniature_yt">
+								<p class="titre_yt">Top 10 des pires bugs réseau dans les jeux rétro</p>
+								<span class="vues_yt">89 k vues • il y a 2 semaines</span>
+							</div>
+						</div>
+					</main>
+				</div>
+			</div>
+		</div>
+
+		<!-- PAGE YOUTUBE MISTERV -->
+		<div id="yt_misterv" class="cachee">
+			<div class="barre_nav_ie">
+				<div class="boutons_ie">
+					<button class="bouton_ie btn-retour-ie" title="Précédent">&lt;</button>
+					<button class="bouton_ie" title="Suivant" disabled>&gt;</button>
+					<button class="bouton_ie" title="Rafraîchir">&#8635;</button>
+				</div>
+				<div class="adresse_ie">
+					<span>Adresse :</span>
+					<input type="text" value="https://www.youtube.com/@MisterV" readonly>
+				</div>
+			</div>
+
+			<div class="contenu_ie disposition_yt">
+				<header class="entete_yt">
+					<img src="images/yt.webp" alt="YouTube" class="logo_yt">
+					<div class="barre_recherche_yt">
+						<input type="text" placeholder="Rechercher une vidéo...">
+						<button class="bouton_ie">Chercher</button>
+					</div>
+				</header>
+
+				<div class="corps_yt">
+					<aside class="barre_laterale_yt">
+						<h3>Abonnements</h3>
+						<ul class="liste_abonnements_yt">
+							<li><button id="btn-aywen-depuis-misterv" class="bouton_abonnement_yt"><img src="https://yt3.googleusercontent.com/im1Ym-hvszy5dfx7ebMzvWlc10gUdEUpUgGMsc50r_eiY1tnDcdfvSTYZRnor0TaooEi8HaPvuc=s160-c-k-c0x00ffffff-no-rj" alt="Aywen" class="photo_profil_yt"><span>Aywen</span></button></li>
+							<li><button id="btn-rootgaming-depuis-misterv" class="bouton_abonnement_yt"><img src="images/root_gaming.png" alt="RootGaming" class="photo_profil_yt"><span>RootGaming</span></button></li>
+							<li><button class="bouton_abonnement_yt"><img src="images/V.png" alt="MisterV" class="photo_profil_yt"><span>MisterV</span></button></li>
+							<li><button id="btn-rootofficiel-depuis-misterv" class="bouton_abonnement_yt"><img src="images/root_off.png" alt="Root_Officiel" class="photo_profil_yt"><span>Root_Officiel</span></button></li>
+						</ul>
+					</aside>
+
+					<main class="principal_yt">
+						<section class="entete_chaine_yt">
+							<img src="images/V.png" alt="MisterV" class="photo_chaine_yt">
+							<div class="infos_chaine_yt">
+								<div class="ligne_titre_chaine_yt">
+									<h1 class="nom_chaine_yt">Mister V</h1>
+									<span class="identifiant_chaine_yt">@MisterV</span>
+								</div>
+								<p class="compteur_abonnes_yt">6,2 M abonnés</p>
+								<p class="bio_chaine_yt">Des vidéos, du son et des pizzas congelées.</p>
+								<button class="bouton_sabonner_yt">S'abonner</button>
+							</div>
+						</section>
+
+						<hr class="separateur_yt">
+
+						<h2>Vidéos de la chaîne</h2>
+						<div class="grille_yt">
+							<div class="video_yt">
+								<img src="images/grillepain.png" alt="Video" class="miniature_yt">
+								<p class="titre_yt">LESINTRUCTEURS.EXE - Le podcast</p>
+								<span class="vues_yt">4,5 M vues • il y a 5 mois</span>
+							</div>
+						</div>
+					</main>
+				</div>
+			</div>
+		</div>
+
+		<!-- PAGE YOUTUBE ROOT_OFFICIEL -->
+		<div id="yt_rootofficiel" class="cachee">
+			<div class="barre_nav_ie">
+				<div class="boutons_ie">
+					<button class="bouton_ie btn-retour-ie" title="Précédent">&lt;</button>
+					<button class="bouton_ie" title="Suivant" disabled>&gt;</button>
+					<button class="bouton_ie" title="Rafraîchir">&#8635;</button>
+				</div>
+				<div class="adresse_ie">
+					<span>Adresse :</span>
+					<input type="text" value="https://www.youtube.com/@Root_Officiel" readonly>
+				</div>
+			</div>
+
+			<div class="contenu_ie disposition_yt">
+				<header class="entete_yt">
+					<img src="images/yt.webp" alt="YouTube" class="logo_yt">
+					<div class="barre_recherche_yt">
+						<input type="text" placeholder="Rechercher une vidéo...">
+						<button class="bouton_ie">Chercher</button>
+					</div>
+				</header>
+
+				<div class="corps_yt">
+					<aside class="barre_laterale_yt">
+						<h3>Abonnements</h3>
+						<ul class="liste_abonnements_yt">
+							<li><button id="btn-aywen-depuis-rootofficiel" class="bouton_abonnement_yt"><img src="https://yt3.googleusercontent.com/im1Ym-hvszy5dfx7ebMzvWlc10gUdEUpUgGMsc50r_eiY1tnDcdfvSTYZRnor0TaooEi8HaPvuc=s160-c-k-c0x00ffffff-no-rj" alt="Aywen" class="photo_profil_yt"><span>Aywen</span></button></li>
+							<li><button id="btn-rootgaming-depuis-rootofficiel" class="bouton_abonnement_yt"><img src="images/root_gaming.png" alt="RootGaming" class="photo_profil_yt"><span>RootGaming</span></button></li>
+							<li><button id="btn-misterv-depuis-rootofficiel" class="bouton_abonnement_yt"><img src="images/V.png" alt="MisterV" class="photo_profil_yt"><span>MisterV</span></button></li>
+							<li><button class="bouton_abonnement_yt"><img src="images/root_off.png" alt="Root_Officiel" class="photo_profil_yt"><span>Root_Officiel</span></button></li>
+						</ul>
+					</aside>
+
+					<main class="principal_yt">
+						<section class="entete_chaine_yt">
+							<img src="images/root_off.png" alt="Root_Officiel" class="photo_chaine_yt">
+							<div class="infos_chaine_yt">
+								<div class="ligne_titre_chaine_yt">
+									<h1 class="nom_chaine_yt">Root_Officiel</h1>
+									<span class="identifiant_chaine_yt">@Root_Officiel</span>
+								</div>
+								<p class="compteur_abonnes_yt">1 subscriber</p>
+								<p class="bio_chaine_yt">SYSTEM_READY // WAITING_FOR_COMMANDS</p>
+								<button class="bouton_sabonner_yt">S'abonner</button>
+							</div>
+						</section>
+
+						<hr class="separateur_yt">
+
+						<h2>Vidéos de la chaîne</h2>
+						<div class="grille_yt">
+							<div class="video_yt">
+								<img src="images/hack_wifi.png" alt="Video" class="miniature_yt">
+								<p class="titre_yt">ROOT_LOG_001.mp4</p>
+								<span class="vues_yt">1 vue • il y a 10 ans</span>
+							</div>
+						</div>
+					</main>
+				</div>
+			</div>
+		</div>
+
+		<!-- SITE WEB AYWEN.FR -->
+		<div id="site_aywen" class="cachee">
+			<div class="barre_nav_ie">
+				<div class="boutons_ie">
+					<button class="bouton_ie btn-retour-ie" title="Précédent">&lt;</button>
+					<button class="bouton_ie" title="Suivant" disabled>&gt;</button>
+					<button class="bouton_ie" title="Rafraîchir">&#8635;</button>
+				</div>
+				<div class="adresse_ie">
+					<span>Adresse :</span>
+					<input type="text" value="https://www.aywen.fr" readonly>
+				</div>
+			</div>
+
+			<div class="contenu_ie disposition_aywen_retro">
+				<header class="entete_retro">
+					<h1 class="titre_retro">welcome to ★ AYWEN.FR ★</h1>
+					<p class="sous_titre_retro">~ Le site officiel de Nicolas - Code, Tech & Delires ~</p>
+				</header>
+
+				<table class="tableau_retro">
+					<tr>
+						<td class="colonne_gauche_retro">
+							<div class="boite_retro">
+								<div class="titre_boite_retro">PROFIL</div>
+								<div class="contenu_boite_retro">
+									<img src="https://yt3.googleusercontent.com/im1Ym-hvszy5dfx7ebMzvWlc10gUdEUpUgGMsc50r_eiY1tnDcdfvSTYZRnor0TaooEi8HaPvuc=s160-c-k-c0x00ffffff-no-rj" alt="Aywen" class="photo_profil_retro">
+									<p><strong>NICOLAS</strong></p>
+									<p class="texte_bio_retro">Vidéaste & Codeur fou.<br>Bienvenue sur mon site !</p>
+									<hr>
+									<p class="texte_compteur">Visiteurs : <strong>000 420 691</strong></p>
+								</div>
+							</div>
+
+							<div class="boite_retro">
+								<div class="titre_boite_retro">COMMUNAUTÉ</div>
+								<div class="contenu_boite_retro">
+									<a href="#" class="lien_bouton_retro">💬 Tchat Discord</a>
+									<a href="#" class="lien_bouton_retro">📸 Mon Instagram</a>
+									<a href="#" class="lien_bouton_retro">👾 Serveur OpenMC</a>
+								</div>
+							</div>
+						</td>
+
+						<td class="colonne_centre_retro">
+							<div class="boite_retro">
+								<div class="titre_boite_retro">MES PROJETS / VIDÉOS</div>
+								<div class="contenu_boite_retro">
+									<ul class="liste_retro">
+										<li>▶ <strong>Mes Vidéos "Tech"</strong> (Expériences avec du code)</li>
+										<li>▶ <strong>Feat Fuze</strong> (Délires & concepts)</li>
+										<li>▶ <strong>Mon Studio de Jeux</strong> (En développement...)</li>
+									</ul>
+								</div>
+							</div>
+
+							<div class="boite_retro boite_livre">
+								<div class="titre_boite_retro">★ NOUVEAUTÉ ★</div>
+								<div class="contenu_boite_retro alignement_centre">
+									<span class="icone_livre_retro">📖</span>
+									<h3>MON LIVRE EST DISPO !</h3>
+									<p>Découvre l'envers du décor de mes créations et du dev !</p>
+									<button id="btn-livre" class="bouton_action_retro">CLIQUE ICI POUR COMMANDER</button>
+								</div>
+							</div>
+						</td>
+
+						<td class="colonne_droite_retro">
+							<div class="boite_retro">
+								<div class="titre_boite_retro">L'ÉQUIPE (TEAM)</div>
+								<div class="contenu_boite_retro">
+									<ul class="liste_equipe_retro">
+										<li><span class="icone_equipe">🧢</span><div><strong>LEMOUSTIQUE</strong><br><small>Chef Monteur</small></div></li>
+										<li><span class="icone_equipe">🎨</span><div><strong>MARGOUTA</strong><br><small>Community Manager</small></div></li>
+										<li><span class="icone_equipe">💻</span><div><strong>NARY</strong><br><small>Graphiste</small></div></li>
+										<li><span class="icone_equipe">⚙️</span><div><strong>VOLKO</strong><br><small>Développeur</small></div></li>
+									</ul>
+									<hr>
+									<button class="petit_bouton_retro">Recrutement [ON]</button>
+								</div>
+							</div>
+						</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+
+		<!-- PAGE LIVRE AYWEN -->
+		<div id="page_livre_aywen" class="cachee">
+			<div class="barre_nav_ie">
+				<div class="boutons_ie">
+					<button class="bouton_ie btn-retour-ie" title="Précédent">&lt;</button>
+					<button class="bouton_ie" title="Suivant" disabled>&gt;</button>
+					<button class="bouton_ie" title="Rafraîchir">&#8635;</button>
+				</div>
+				<div class="adresse_ie">
+					<span>Adresse :</span>
+					<input type="text" value="https://www.aywen.fr/boutique/mon-livre.php" readonly>
+				</div>
+			</div>
+
+			<div class="contenu_ie disposition_boutique_retro">
+				<div class="banniere_boutique">
+					<span>🔥 BOUTIQUE OFFICIELLE AYWEN.FR - EXPÉDITION SOUS 48H PAR LA POSTE 🔥</span>
+				</div>
+
+				<div class="conteneur_boutique">
+					<div class="colonne_gauche_boutique">
+						<div class="boite_apercu_livre">
+							<div class="badge_promo">-0 % DE RÉDUCTION !</div>
+							<div class="maquette_livre">
+								<span class="icone_emoticone_livre">📖</span>
+								<p class="titre_maquette_livre">CODER DES TRUCS INUTILES</p>
+								<p class="auteur_maquette_livre">par Aywen</p>
+							</div>
+						</div>
+
+						<div class="boite_garantie_boutique">
+							<h4>Garanties 2000 :</h4>
+							<ul>
+								<li>✅ Paiement 100 % Sécurisé (CB / Chèque)</li>
+								<li>📦 Livré dans un carton renforcé</li>
+								<li>👾 Contient 0 % de virus garanti par Avast</li>
+							</ul>
+						</div>
+					</div>
+
+					<div class="colonne_droite_boutique">
+						<h1 class="titre_livre">LE LIVRE OFFICIEL : Coder des trucs inutiles (et devenir un génie)</h1>
+						<p class="sous_titre_livre">Le guide ultime pour perdre son temps intelligemment devant un écran.</p>
+
+						<div class="panneau_prix">
+							<div class="affichage_prix">
+								<span class="valeur_prix">27,00 €</span>
+								<span class="tva_prix">(TVA 5.5% incluse + 177.00 Francs)</span>
+							</div>
+							<div class="statut_stock">🟢 En Stock (Il reste 4 exemplaires !)</div>
+						</div>
+
+						<fieldset class="fiche_technique">
+							<legend>📑 Fiche Technique Rétro</legend>
+							<ul class="liste_fiche_technique">
+								<li><strong>Nombre de pages :</strong> 176 pages (imprimées sur du vrai papier)</li>
+								<li><strong>Poids :</strong> 340g (soit l'équivalent de 2 souris PS/2)</li>
+								<li><strong>Langage :</strong> Français / JS / Python / C++ / Bruitages de clavier</li>
+								<li><strong>Bonus exclusif :</strong> Marque-page au format disquette 3.5" (factice)</li>
+								<li><strong>Compatibilité :</strong> Lisible avec les yeux (aucun pilote requis)</li>
+							</ul>
+						</fieldset>
+
+						<div class="presentation_livre">
+							<h3>Pourquoi acheter ce livre ?</h3>
+							<p>Marre de coder des trucs utiles pour l'école ou le travail ? Dans ce bouquin de <strong>176 pages</strong>, Aywen vous explique pas à pas comment concevoir des projets totalement absurdes.</p>
+						</div>
+
+						<div class="zone_action_achat">
+							<div class="selecteur_quantite">
+								<label for="quantite_livre">Quantité :</label>
+								<input type="number" id="quantite_livre" value="1" min="1" max="99">
+							</div>
+							<button class="bouton_ajouter_panier" id="btn-buy-book">🛒 AJOUTER AU PANIER</button>
+						</div>
+					</div>
+				</div>
+
+				<div class="pied_boutique">
+					<small>Aywen Store © 2008 - Site optimisé pour Internet Explorer 6 en 1024x768.</small>
+				</div>
+			</div>
+		</div>
+
+		<!-- MAKERSCHAT -->
+		<div id="page_makerschat" class="cachee">
+			<div class="barre_nav_ie">
+				<div class="boutons_ie">
+					<button class="bouton_ie btn-retour-ie" title="Précédent">&lt;</button>
+					<button class="bouton_ie" title="Suivant" disabled>&gt;</button>
+					<button class="bouton_ie" title="Rafraîchir">&#8635;</button>
+				</div>
+				<div class="adresse_ie">
+					<span>Adresse :</span>
+					<input type="text" value="https://www.makerschat-2000.fr.st" readonly>
+				</div>
+			</div>
+
+			<div class="contenu_ie disposition_chat_retro">
+				<div class="entete_chat">
+					<h2>💬 MakersChat v2.4 (Salon #Général)</h2>
+					<small>Connecté en tant que <strong>Guest_4892</strong> | 14 utilisateurs en ligne</small>
+				</div>
+				<div class="boite_discussion">
+					<p><span class="pseudo_chat">[xX_DarkKev_Xx] :</span> slt qqun a le crack de GTA III???</p>
+					<p><span class="pseudo_chat">[Loly_92] :</span> DarkKev: tout le monde !! ^^</p>
+					<p><span class="pseudo_chat">[Admin_Tom] :</span> Pas de liens d'executables sur le tchat svp !</p>
+					<p><span class="pseudo_chat">[Cyber_Pro] :</span> Pour GTA 3 tou le monde la mais y a des faux qui te ban apres 1 mois. Demande à Aywen il devrais te passer le bon...</p>
+				</div>
+				<div class="saisie_chat">
+					<input type="text" placeholder="Tapez votre message ici..." disabled>
+					<button class="bouton_ie">Envoyer</button>
+				</div>
+			</div>
+		</div>
+
+		<!-- AYWEN COIN -->
+		<div id="page_darknet" class="cachee">
+			<div class="barre_nav_ie">
+				<div class="boutons_ie">
+					<button class="bouton_ie btn-retour-ie" title="Précédent">&lt;</button>
+					<button class="bouton_ie" title="Suivant" disabled>&gt;</button>
+					<button class="bouton_ie" title="Rafraîchir">&#8635;</button>
+				</div>
+				<div class="adresse_ie">
+					<span>Adresse :</span>
+					<input type="text" value="https://www.aywencoin-pour-root.fr.st" readonly>
+				</div>
+			</div>
+
+			<div class="contenu_ie disposition_clicker_retro">
+				<div class="entete_clicker">
+					<h1 class="titre_clicker">💰 AYWEN COIN DONATION DRIVE 💰</h1>
+					<p class="sous_titre_clicker">Aidez Root à lever des fonds en temps réel !</p>
+				</div>
+
+				<div class="boite_compteur_don">
+					<span class="etiquette_total">TOTAL DE COINS RÉCOLTÉS</span>
+					<div id="affichage_total_coins" class="compteur_numerique">0</div>
+					<span class="statut_synchronisation">🟢 Synchronisé en direct (Supabase)</span>
+				</div>
+
+				<div class="zone_action_don">
+					<button id="btn_donner_coin" class="bouton_don_retro">
+						<span class="icone_coin">🪙</span>
+						<span>DONNER 1 AYWEN COIN !</span>
+					</button>
+				</div>
+
+				<p class="pied_clicker">Chaque clic envoie immédiatement 1 Aywen Coin supplémentaire au total global de tous les joueurs.</p>
+			</div>
+		</div>
+
+	</div>
+
+	<!-- FENÊTRE TERMINAL -->
+	<div id="terminal" class="boite_centrale cachee">
+		<div class="haut_centrale barre-deplacement">
+			<p>Terminal</p>
+			<div class="commandes_fenetre">
+				<button id="btn-minterminal" class="bouton_fenetre bouton_reduire"></button>
+				<button class="bouton_fenetre bouton_agrandir"></button>
+				<button id="btn-closeterminal" class="bouton_fenetre bouton_fermer"></button>
+			</div>
+		</div>	
+
+		<div class="corps_terminal">
+			<div id="historique_terminal">
+				<p>RootOS [Version 1.0.1]</p>
+			</div>
+			
+			<div class="ligne_commande">
+				<span class="prompt">C:\Root&gt;</span>
+				<input type="text" id="entree_terminal" autofocus autocomplete="off">
+			</div>
+		</div>
+	</div>
+	
+	<!-- FENÊTRE LECTEUR DE MUSIQUE (APP) -->
+	<div id="application-musique" class="boite_centrale cachee">
+		<div class="haut_centrale barre-deplacement">
+			<p>Media Player Rétro v1.0</p>
+			<div class="commandes_fenetre">
+				<button id="btn-closemusique" class="bouton_fenetre bouton_fermer"></button>
+			</div>
+		</div>
+		<div class="contenu_musique">
+			<div class="lecteur-interface">
+				<div class="ecran-musique">
+					<span class="icone-note">🎵</span>
+					<div class="infos-piste">
+						<!-- Modifie le titre ici si besoin -->
+						<div id="titre-musique">Ma Musique Rétro.mp3</div>
+						<div id="statut-musique">Arrêté</div>
+					</div>
+				</div>
+				
+				<!-- Lien vers TON fichier local -->
+				<audio id="lecteur-audio" src="audio/musique.mp3"></audio>
+				
+				<div class="controles-musique">
+					<button id="btn-play-musique" class="btn">▶ Play</button>
+					<button id="btn-pause-musique" class="btn">⏸ Pause</button>
+					<button id="btn-stop-musique" class="btn">⏹ Stop</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- MENU DÉMARRAGE -->
+	<div id="boite_demarrage" class="boite cachee">
+		<button id="btn_relance" class="btn">Relancer le jeu</button>
+	</div>
+
+	<!-- POPUP CONFIRMATION -->
+	<div id="boite_confirm" class="boite_pop cachee">
+		<p>Voulez-vous relancer le jeu ?<br>Toute l'avancée sera perdue</p>
+		<div class="actions">
+			<button id="btn-oui" class="btn">Oui</button>
+			<button id="btn-non" class="btn">Non</button>
+		</div>
+	</div>
+
+	<!-- BARRE DES TÂCHES (FOOTER) -->
+	<footer>
+		<button id="btn-start" class="btn btn-start"><img src="images/Windows_root.png" alt="Icône démarrage Root"></button>
+		<button id="btn-terminal" class="btn btn-terminal"><img src="images/terminal.png" alt="Icône terminal">Terminal</button>
+		<button id="btn-internet" class="btn btn-internet"><img src="images/internet_explorer.png" alt="Icône internet">Internet</button>
+		<button id="btn-musique" class="btn btn-musique">🎵 Musique</button>
+		<button id="btn-aider-root" class="btn btn-aider-root">Aider Root</button>
+		<div id="zone_horloge" class="zone_horloge">
+			<span id="heure_systeme">00:00</span>
+			<span id="date_systeme">01/01/2000</span>
+		</div>
+	</footer>
+</body>
+</html>
