@@ -1,0 +1,834 @@
+/* ----- SACHEZ QU'ECRIRE TOUS CA M'A RENDU FOU A JAMAIS ... ----- */
+
+
+
+body {  
+	background: #51F4F4;
+	margin: 0;
+	padding: 0;
+}
+
+footer {
+	background: #B9B9B9;
+    width: 100%;
+    height: 60px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+/* --- BOUTONS -- */
+.btn {
+    background-color: #c0c0c0;
+    border-top: 2px solid #ffffff;
+    border-left: 2px solid #ffffff;
+    border-right: 2px solid #000000;
+    border-bottom: 2px solid #000000;
+    font-family: 'Tahoma', sans-serif;
+    font-size: 14px;
+    padding: 4px 12px;
+    cursor: pointer;
+}
+
+.btn:active {
+    border-top: 2px solid #000000;
+    border-left: 2px solid #000000;
+    border-right: 2px solid #ffffff;
+    border-bottom: 2px solid #ffffff;
+}
+
+.btn-start {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 80px;
+    height: 50px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 1px;
+    cursor: pointer;
+}
+.btn-start img { width: 70px; height: 40px; }
+
+.btn-terminal, .btn-internet {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 115px;
+    height: 40px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 1px;
+    cursor: pointer;
+    font-family: 'Courier New', monospace;
+}
+
+.btn-terminal { left: 120px; }
+.btn-internet { left: 245px; }
+
+.btn-terminal img, .btn-internet img {
+    width: 50px;
+    height: 30px;
+}
+
+/* Boîtes génériques */
+.boite {
+    background-color: #c0c0c0;
+    border: 2px outset #ffffff;
+    padding: 10px;
+    width: 180px;
+    position: fixed;
+    bottom: 65px; 
+    left: 5px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.cachee { display: none !important; }
+
+.boite_pop {
+    background-color: #c0c0c0;
+    border: 2px outset #ffffff;
+    padding: 15px;
+    width: 250px;
+    text-align: center;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2000;
+}
+
+.boite_pop .actions {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.commandes_fenetre {
+    display: flex;
+    gap: 3px;
+}
+
+/* Boutons réduire agrandir fermer */
+.bouton_fenetre {
+    width: 21px;
+    height: 21px;
+    border: 1px solid #ffffff;
+    border-radius: 3px;
+    cursor: pointer;
+    position: relative;
+    box-sizing: border-box;
+    outline: none;
+    padding: 0;
+}
+
+.bouton_reduire, .bouton_agrandir {
+    background: linear-gradient(to bottom, #428eff 0%, #0038bb 100%);
+    box-shadow: inset 0 0 0 1px #001f70;
+}
+.bouton_reduire:hover, .bouton_agrandir:hover { background: linear-gradient(to bottom, #60a0ff 0%, #004bd9 100%); }
+
+.bouton_fermer {
+    background: linear-gradient(to bottom, #e16548 0%, #a21a00 100%);
+    box-shadow: inset 0 0 0 1px #6d0a00;
+}
+.bouton_fermer:hover { background: linear-gradient(to bottom, #f37d62 0%, #bd2305 100%); }
+
+.bouton_reduire::before {
+    content: ""; position: absolute; bottom: 3px; left: 3px; width: 7px; height: 2px; background-color: #ffffff;
+}
+
+.bouton_agrandir::before {
+    content: ""; position: absolute; top: 3px; left: 3px; width: 9px; height: 8px; border: 1px solid #ffffff; border-top: 2px solid #ffffff; box-sizing: border-box;
+}
+
+.bouton_fermer::before, .bouton_fermer::after {
+    content: ""; position: absolute; top: 3px; left: 7px; width: 2px; height: 11px; background-color: #ffffff;
+}
+.bouton_fermer::before { transform: rotate(45deg); }
+.bouton_fermer::after { transform: rotate(-45deg); }
+
+/* --TERMINAL -- */
+.corps_terminal {
+    background-color: #000000;
+    color: #00ff00;
+    font-family: 'Courier New', monospace;
+    font-size: 14px;
+    padding: 10px;
+    height: 350px;
+    overflow-y: auto;
+    box-sizing: border-box;
+}
+
+.ligne_commande {
+    display: flex;
+    align-items: center;
+    margin-top: 5px;
+}
+
+.prompt {
+    color: #00ff00;
+    margin-right: 8px;
+    white-space: nowrap;
+}
+
+#entree_terminal {
+    background: transparent;
+    border: none;
+    outline: none;
+    color: #00ff00;
+    font-family: 'Courier New', monospace;
+    font-size: 14px;
+    width: 100%;
+}
+
+/* -- INTERNET EXPLORER & FENÊTRES --- */
+.boite_centrale {
+    background-color: #d4d0c8;
+    border: 2px outset #ffffff;
+    width: 650px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2000;
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.4);
+    resize: none !important;
+}
+
+.haut_centrale {
+    background: linear-gradient(to right, #0058ee, #3a93ff);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 3px 6px;
+    color: white;
+    font-family: Tahoma, sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+    cursor: default;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+.barre_nav_ie {
+    background-color: #d4d0c8;
+    border-bottom: 2px solid #808080;
+    padding: 4px 8px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.boutons_ie { display: flex; gap: 2px; }
+
+.bouton_ie {
+    background: #e0e0e0;
+    border: 1px solid #707070;
+    padding: 2px 8px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.adresse_ie {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    flex-grow: 1;
+    font-family: Tahoma, sans-serif;
+    font-size: 11px;
+}
+
+.adresse_ie input {
+    width: 100%;
+    background-color: #ffffff;
+    border: 1px solid #7f9db9;
+    padding: 2px 5px;
+    font-family: Tahoma, sans-serif;
+    font-size: 12px;
+}
+
+.contenu_ie {
+    background-color: #ffffff;
+    padding: 20px;
+    height: 320px;
+    overflow-y: auto;
+    font-family: Tahoma, sans-serif;
+}
+
+.entete_accueil_ie {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    border-bottom: 2px solid #0054E5;
+    padding-bottom: 10px;
+}
+
+.logo_ie { width: 48px; height: 48px; }
+.entete_accueil_ie h1 { font-size: 18px; color: #003399; margin: 0; }
+.texte_bienvenue_ie { font-size: 13px; color: #333333; margin: 15px 0; }
+
+.raccourcis_ie {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    margin-top: 15px;
+}
+
+.raccourci {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background-color: #f5f5f5;
+    border: 1px solid #0054E5;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.2s;
+}
+
+.raccourci:hover { background-color: #b0d0ff; }
+.raccourci .icone { font-size: 20px; }
+.raccourci .titre { font-family: Tahoma, sans-serif; font-size: 13px; font-weight: bold; color: #003399; }
+
+/* --- YOUTUBE - */
+.disposition_yt {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    background-color: #f2f2f2;
+    color: #222222;
+}
+
+.entete_yt {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 2px solid #ccc;
+    padding-bottom: 8px;
+    margin-bottom: 10px;
+}
+
+.logo_yt { height: 32px; width: auto; }
+.barre_recherche_yt { display: flex; gap: 4px; }
+.barre_recherche_yt input { border: 1px solid #7f9db9; padding: 2px 5px; font-size: 11px; width: 200px; }
+
+.corps_yt { display: flex; gap: 12px; height: 100%; }
+
+.barre_laterale_yt {
+    width: 150px;
+    background-color: #ffffff;
+    border: 1px solid #cccccc;
+    padding: 8px;
+    box-sizing: border-box;
+}
+
+.barre_laterale_yt h3 {
+    font-size: 12px;
+    margin: 0 0 8px 0;
+    color: #cc0000;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 4px;
+}
+
+.liste_abonnements_yt { list-style: none; padding: 0; margin: 0; }
+
+.bouton_abonnement_yt {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    width: 100%;
+    background: none;
+    border: none;
+    padding: 4px;
+    cursor: pointer;
+    text-align: left;
+    font-family: Tahoma, sans-serif;
+    font-size: 11px;
+}
+.bouton_abonnement_yt:hover { background-color: #e8e8e8; }
+
+.photo_profil_yt {
+    width: 24px;
+    height: 24px;
+    background-color: #aaaaaa;
+    border: 1px solid #888888;
+    object-fit: cover;
+}
+
+.principal_yt {
+    flex-grow: 1;
+    background-color: #ffffff;
+    border: 1px solid #cccccc;
+    padding: 10px;
+}
+
+.principal_yt h2 { font-size: 13px; margin: 0 0 10px 0; color: #333333; }
+.grille_yt { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+.video_yt { display: flex; flex-direction: column; cursor: pointer; }
+
+.miniature_yt {
+    width: 100%;
+    height: 85px;
+    background-color: #333333;
+    border: 1px solid #999999;
+    object-fit: cover;
+}
+
+.titre_yt { font-size: 11px; font-weight: bold; color: #0033cc; margin: 4px 0 2px 0; line-height: 1.2; }
+.titre_yt:hover { text-decoration: underline; }
+.vues_yt { font-size: 9px; color: #666666; }
+
+/* Profils Chaînes Youtube */
+.entete_chaine_yt { display: flex; align-items: flex-start; gap: 15px; padding-bottom: 12px; }
+.photo_chaine_yt { width: 64px; height: 64px; border-radius: 50%; border: 1px solid #b5b5b5; flex-shrink: 0; }
+.infos_chaine_yt { display: flex; flex-direction: column; gap: 3px; font-family: Tahoma, sans-serif; }
+.ligne_titre_chaine_yt { display: flex; align-items: baseline; gap: 8px; }
+.nom_chaine_yt { font-size: 16px; font-weight: bold; margin: 0; color: #222222; }
+.identifiant_chaine_yt { font-size: 11px; color: #666666; }
+.compteur_abonnes_yt { font-size: 11px; color: #444444; margin: 0; font-weight: bold; }
+.bio_chaine_yt { font-size: 11px; color: #333333; margin: 4px 0 8px 0; }
+
+.bouton_sabonner_yt {
+    background: linear-gradient(to bottom, #e62117, #cc181e);
+    color: #ffffff;
+    border: 1px solid #a61218;
+    padding: 4px 12px;
+    font-weight: bold;
+    font-size: 11px;
+    font-family: Tahoma, sans-serif;
+    cursor: pointer;
+    border-radius: 2px;
+    width: fit-content;
+}
+.bouton_sabonner_yt:hover { background: #cc181e; }
+.bouton_sabonner_yt.abonne { background: #e0e0e0; color: #333333; border: 1px solid #999999; }
+
+.separateur_yt { border: 0; border-top: 1px solid #ddd; margin: 10px 0 15px 0; }
+.ligne_actions_yt { display: flex; align-items: center; gap: 8px; margin-top: 4px; }
+.conteneur_menu_yt { position: relative; display: inline-block; }
+
+.bouton_points_yt {
+    background: none;
+    border: 1px solid transparent;
+    font-size: 16px;
+    font-weight: bold;
+    color: #444;
+    cursor: pointer;
+    padding: 2px 6px;
+    border-radius: 2px;
+}
+.bouton_points_yt:hover { background-color: #e0e0e0; border-color: #ccc; }
+
+.menu_deroulant_yt {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    margin-top: 4px;
+    background-color: #ffffff;
+    border: 1px solid #7f9db9;
+    box-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+    z-index: 100;
+    min-width: 150px;
+}
+
+.element_menu_deroulant_yt {
+    width: 100%;
+    background: none;
+    border: none;
+    text-align: left;
+    padding: 6px 10px;
+    font-size: 11px;
+    font-family: Tahoma, sans-serif;
+    color: #000;
+    cursor: pointer;
+}
+.element_menu_deroulant_yt:hover { background-color: #316ac5; color: #ffffff; }
+
+/* --- SITE RETRO AYWEN.FR -- */
+.disposition_aywen_retro {
+    background-color: #000033 !important;
+    background-image: repeating-linear-gradient(0deg, #000022, #000022 2px, #000044 2px, #000044 4px);
+    color: #ffffff;
+    font-family: "Comic Sans MS", "Tahoma", sans-serif;
+    padding: 10px !important;
+}
+
+.entete_retro {
+    text-align: center;
+    border: 2px outset #ffffff;
+    background: linear-gradient(to right, #000080, #800080);
+    padding: 8px;
+    margin-bottom: 10px;
+}
+
+.titre_retro { font-size: 16px; margin: 0; color: #ffff00; text-shadow: 2px 2px #ff0000; letter-spacing: 1px; }
+.sous_titre_retro { font-size: 10px; margin: 4px 0 0 0; color: #00ffff; }
+
+.tableau_retro { width: 100%; border-collapse: separate; border-spacing: 8px; }
+.colonne_gauche_retro, .colonne_droite_retro { width: 28%; vertical-align: top; }
+.colonne_centre_retro { width: 44%; vertical-align: top; }
+
+.boite_retro { border: 2px inset #ffffff; background-color: #000066; margin-bottom: 8px; }
+.titre_boite_retro { background: #000080; color: #ffffff; font-weight: bold; font-size: 11px; padding: 3px 6px; border-bottom: 1px solid #ffffff; text-align: center; }
+.contenu_boite_retro { padding: 8px; font-size: 10px; }
+
+.photo_profil_retro { width: 50px; height: 50px; border: 2px solid #ffff00; display: block; margin: 0 auto 6px auto; }
+.texte_bio_retro { font-size: 10px; text-align: center; margin: 4px 0; }
+.texte_compteur { font-size: 9px; color: #00ff00; text-align: center; margin: 0; }
+
+.lien_bouton_retro {
+    display: block;
+    background-color: #c0c0c0;
+    color: #000000;
+    border: 2px outset #ffffff;
+    text-align: center;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 3px;
+    margin-bottom: 4px;
+    font-size: 10px;
+}
+.lien_bouton_retro:active { border-style: inset; }
+
+.liste_retro { list-style: none; padding: 0; margin: 0; font-size: 10px; }
+.liste_retro li { margin-bottom: 6px; color: #00ffff; }
+
+.boite_livre { border-color: #ff0000; background-color: #330000; }
+.alignement_centre { text-align: center; }
+.icone_livre_retro { font-size: 24px; }
+.boite_livre h3 { color: #ffff00; font-size: 12px; margin: 4px 0; }
+
+.bouton_action_retro {
+    background: #ff0000; color: #ffffff; border: 2px outset #ffaaaa; font-weight: bold; font-size: 10px; padding: 5px 8px; cursor: pointer;
+}
+.bouton_action_retro:hover { background: #cc0000; }
+
+.liste_equipe_retro { list-style: none; padding: 0; margin: 0; }
+.liste_equipe_retro li { display: flex; align-items: center; gap: 6px; margin-bottom: 6px; font-size: 10px; }
+.icone_equipe { font-size: 14px; }
+
+.petit_bouton_retro { width: 100%; background: #008000; color: white; border: 1px solid #00ff00; font-size: 9px; cursor: pointer; }
+
+/* -- BOTIQUE LIVRE --- */
+.disposition_boutique_retro { background-color: #e4e4e4 !important; color: #000000; font-family: Tahoma, Arial, sans-serif; padding: 8px !important; }
+.banniere_boutique { background: linear-gradient(to right, #ff0000, #990000); color: #ffffff; font-weight: bold; font-size: 11px; padding: 4px; text-align: center; border: 1px solid #660000; margin-bottom: 10px; }
+
+.conteneur_boutique { display: flex; gap: 12px; background-color: #ffffff; border: 2px inset #ffffff; padding: 10px; }
+.colonne_gauche_boutique { width: 35%; }
+.colonne_droite_boutique { width: 65%; }
+
+.boite_apercu_livre { background-color: #f0f0f0; border: 1px solid #cccccc; padding: 15px; text-align: center; position: relative; margin-bottom: 10px; }
+.badge_promo { position: absolute; top: 5px; left: 5px; background-color: #ff0000; color: white; font-weight: bold; font-size: 9px; padding: 2px 5px; border: 1px solid #880000; }
+
+.maquette_livre { background: linear-gradient(135deg, #cc0000, #111111); color: white; border: 3px outset #ff4444; padding: 20px 10px; border-radius: 4px; box-shadow: 4px 4px 0 #888888; }
+.icone_emoticone_livre { font-size: 40px; }
+.titre_maquette_livre { font-size: 12px; font-weight: bold; margin: 8px 0 2px 0; color: #ffff00; }
+.auteur_maquette_livre { font-size: 10px; color: #ffffff; margin: 0; }
+
+.boite_garantie_boutique { border: 1px dashed #008000; background-color: #f0fff0; padding: 8px; font-size: 10px; }
+.boite_garantie_boutique h4 { margin: 0 0 4px 0; color: #006600; }
+.boite_garantie_boutique ul { padding-left: 15px; margin: 0; }
+
+.titre_livre { font-size: 15px; color: #000080; margin: 0 0 4px 0; }
+.sous_titre_livre { font-size: 11px; color: #555555; font-style: italic; margin: 0 0 10px 0; }
+
+.panneau_prix { background-color: #fff9c4; border: 1px solid #fbc02d; padding: 8px; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center; }
+.valeur_prix { font-size: 20px; font-weight: bold; color: #cc0000; }
+.tva_prix { font-size: 9px; color: #666666; display: block; }
+.statut_stock { font-size: 10px; font-weight: bold; color: #008000; }
+
+.fiche_technique { border: 1px solid #7f9db9; padding: 8px; font-size: 10px; margin-bottom: 10px; }
+.fiche_technique legend { color: #000080; font-weight: bold; padding: 0 4px; }
+.liste_fiche_technique { list-style: square; padding-left: 15px; margin: 0; }
+.liste_fiche_technique li { margin-bottom: 3px; }
+
+.presentation_livre { font-size: 11px; margin-bottom: 12px; }
+.presentation_livre h3 { font-size: 12px; margin: 0 0 4px 0; color: #333; }
+
+.zone_action_achat { display: flex; align-items: center; gap: 10px; background-color: #e0e0e0; border: 1px solid #b5b5b5; padding: 8px; }
+.selecteur_quantite { font-size: 11px; }
+.selecteur_quantite input { width: 40px; padding: 2px; }
+
+.bouton_ajouter_panier {
+    background: linear-gradient(to bottom, #00e676, #00a152); color: #ffffff; border: 2px outset #ffffff; font-weight: bold; font-size: 12px; padding: 6px 15px; cursor: pointer; text-shadow: 1px 1px #004d40;
+}
+.bouton_ajouter_panier:active { border-style: inset; }
+.pied_boutique { text-align: center; margin-top: 10px; font-size: 9px; color: #666666; }
+
+/* --- SITES ---- */
+/* MakersChat */
+.disposition_chat_retro { background: #ECE9D8; height: 100%; display: flex; flex-direction: column; font-family: Tahoma, sans-serif; }
+.entete_chat { background: #0A246A; color: white; padding: 6px; font-size: 11px; }
+.boite_discussion { background: white; border: 2px inset #808080; height: 200px; padding: 8px; overflow-y: auto; font-size: 11px; margin: 8px 0; }
+.pseudo_chat { font-weight: bold; color: #000080; }
+.saisie_chat { display: flex; gap: 5px; }
+.saisie_chat input { flex-grow: 1; border: 1px solid #7F9DB9; }
+
+/* DarkNet.exe */
+/* --- CLICKER AYWEN --- */
+.disposition_clicker_retro {
+    background: #008080 !important;
+    color: #ffffff;
+    font-family: 'Tahoma', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px !important;
+    text-align: center;
+}
+
+.entete_clicker {
+    background-color: #000080;
+    border: 2px outset #ffffff;
+    padding: 8px 15px;
+    width: 90%;
+}
+
+.titre_clicker {
+    font-size: 15px;
+    color: #ffff00;
+    margin: 0;
+}
+
+.sous_titre_clicker {
+    font-size: 10px;
+    color: #00ffff;
+    margin: 3px 0 0 0;
+}
+
+.boite_compteur_don {
+    background-color: #c0c0c0;
+    border: 3px inset #ffffff;
+    padding: 12px;
+    width: 80%;
+    color: #000000;
+}
+
+.etiquette_total {
+    font-size: 10px;
+    font-weight: bold;
+    color: #444444;
+    display: block;
+    margin-bottom: 4px;
+}
+
+.compteur_numerique {
+    background-color: #000000;
+    color: #00ff00;
+    font-family: 'Courier New', monospace;
+    font-size: 28px;
+    font-weight: bold;
+    padding: 6px;
+    border: 2px inset #808080;
+    letter-spacing: 2px;
+}
+
+.statut_synchronisation {
+    font-size: 9px;
+    color: #006600;
+    display: block;
+    margin-top: 5px;
+}
+
+.zone_action_don {
+    margin: 10px 0;
+}
+
+.bouton_don_retro {
+    background: linear-gradient(to bottom, #ffcc00, #ff9900);
+    border: 3px outset #ffffff;
+    color: #000000;
+    font-family: 'Tahoma', sans-serif;
+    font-size: 13px;
+    font-weight: bold;
+    padding: 10px 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.4);
+}
+
+.bouton_don_retro:active {
+    border-style: inset;
+    transform: translateY(2px);
+}
+
+.icone_coin {
+    font-size: 20px;
+}
+
+.pied_clicker {
+    font-size: 9px;
+    color: #e0e0e0;
+    margin: 0;
+}
+
+/* ---- AVERTISSEMENT ---- */
+.superposition_avertissement {
+    position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background-color: rgba(0, 0, 0, 0.85); z-index: 9999; display: flex; justify-content: center; align-items: center;
+}
+
+.boite_avertissement { background-color: #c0c0c0; border: 3px outset #ffffff; width: 90%; max-width: 550px; box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.6); }
+.contenu_avertissement { padding: 20px; text-align: center; font-family: Tahoma, sans-serif; color: #000; }
+.contenu_avertissement h2 { color: #cc0000; font-size: 16px; margin-top: 0; }
+.contenu_avertissement p { font-size: 13px; line-height: 1.5; margin: 15px 0; }
+
+.bouton_avertissement {
+    background-color: #c0c0c0; border-top: 2px solid #ffffff; border-left: 2px solid #ffffff; border-right: 2px solid #000000; border-bottom: 2px solid #000000; font-family: Tahoma, sans-serif; font-weight: bold; font-size: 13px; padding: 8px 16px; cursor: pointer; margin-top: 10px;
+}
+.bouton_avertissement:active { border-top: 2px solid #000000; border-left: 2px solid #000000; border-right: 2px solid #ffffff; border-bottom: 2px solid #ffffff; }
+
+/* Bouton Aider Root*/
+.btn-aider-root {
+    position: absolute;
+    right: 130px; /* Décalé pour laisser la place à l'horloge */
+    top: 50%;
+    transform: translateY(-50%);
+    height: 40px;
+    font-family: 'Tahoma', sans-serif;
+    font-weight: bold;
+}
+
+/*  - Horloge & Date -*/
+.zone_horloge {
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 38px;
+    padding: 2px 8px;
+    background-color: #c0c0c0;
+    border-top: 2px solid #808080;
+    border-left: 2px solid #808080;
+    border-right: 2px solid #ffffff;
+    border-bottom: 2px solid #ffffff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Tahoma', sans-serif;
+    color: #000000;
+    user-select: none;
+}
+
+#heure_systeme {
+    font-size: 11px;
+    font-weight: bold;
+    line-height: 1.1;
+}
+
+#date_systeme {
+    font-size: 9px;
+    color: #444444;
+    line-height: 1.1;
+}
+.image_etape_droite {
+    position: fixed; bottom: 70px; right: 20px; max-width: 750px; max-height: 750px; z-index: 9998; pointer-events: none; transition: opacity 0.3s ease;
+}
+
+
+/* --- ICÔNES  BUREAU -- */
+.bureau-icones {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    z-index: 1;
+}
+
+.icone-bureau {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 70px;
+    cursor: pointer;
+    text-align: center;
+    color: white;
+    font-family: Tahoma, sans-serif;
+    font-size: 11px;
+    text-shadow: 1px 1px 2px black;
+    padding: 5px;
+    border: 1px transparent dashed;
+}
+
+.icone-bureau:hover {
+    background-color: rgba(0, 84, 229, 0.3);
+    border-color: #ffffff;
+}
+
+.icone-bureau img {
+    width: 38px;
+    height: 38px;
+    margin-bottom: 4px;
+}
+
+.emoji-bureau {
+    font-size: 32px;
+    line-height: 38px;
+}
+
+/* --- BOUTON MUSIQUE TÂCHES --- */
+.btn-musique {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 370px;
+    height: 40px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: 'Tahoma', sans-serif;
+    font-weight: bold;
+}
+
+/* ---MUSIQUE --- */
+.contenu_musique {
+    padding: 15px;
+    background: #c0c0c0;
+    font-family: Tahoma, sans-serif;
+}
+
+.lecteur-interface {
+    background: #000;
+    border: 2px inset #fff;
+    padding: 10px;
+    color: #00ff00;
+}
+
+.ecran-musique {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: #002b00;
+    border: 1px solid #00ff00;
+    padding: 8px;
+    margin-bottom: 10px;
+}
+
+.icone-note {
+    font-size: 24px;
+}
+
+.infos-piste {
+    font-size: 11px;
+    font-family: 'Courier New', monospace;
+}
+
+.controles-musique {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+}
+
