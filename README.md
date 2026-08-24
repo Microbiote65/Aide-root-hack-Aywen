@@ -2,6 +2,8 @@
 
 Un jeu de réflexion, de piratage rétro et d'enquête web au cœur des années 2000 !
 
+Directement sur le web sans installation: https://microbiote65.github.io/Aide-root-hack-Aywen/
+
 Ce projet est sous licence MIT - voir le fichier LICENSE pour plus de détails.
 
 ⚠️ DISCLAIMER / AVERTISSEMENT LÉGAL
@@ -15,5 +17,6 @@ Aucune incitation au hacking : Ce projet n'incite en aucun cas à la réalisatio
 
 Exonération de responsabilité : Les créateurs et contributeurs de ce projet ne pourront en aucun cas être tenus responsables d'une quelconque utilisation détournée, des envies de piratage, ou des actes commis par les utilisateurs en dehors du cadre strictly ludique de ce jeu.
 
-📖 À propos du jeu
+📖 À propos du jeu:
+
 Root Hack Aywen est une expérience web immersive et rétro conçue pour le MakersHub Hackathon 2026.
