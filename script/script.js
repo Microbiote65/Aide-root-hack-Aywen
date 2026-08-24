@@ -471,6 +471,7 @@ const iconeBureauInternet = document.getElementById('bureau-internet');
 const iconeBureauMusique = document.getElementById('bureau-musique');
 const appMusique = document.getElementById('application-musique');
 const btnMusiqueFooter = document.getElementById('btn-musique');
+const iconeBureauAywencoin = document.getElementById('bureau-aywencoin');
 
 if (iconeBureauTerminal) {
     iconeBureauTerminal.addEventListener('dblclick', () => terminal.classList.remove('cachee'));
@@ -482,6 +483,14 @@ if (iconeBureauInternet) {
 
 if (iconeBureauMusique) {
     iconeBureauMusique.addEventListener('dblclick', () => appMusique.classList.remove('cachee'));
+}
+
+if (iconeBureauAywencoin) {
+    iconeBureauAywencoin.addEventListener('dblclick', () => {
+        masquerToutesLesPagesWeb();
+        page_darknet.classList.remove('cachee');
+        internet.classList.remove('cachee');
+    });
 }
 
 if (btnMusiqueFooter) {
